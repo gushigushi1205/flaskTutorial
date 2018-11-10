@@ -33,7 +33,6 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_login_logout(self):
         rv = self.login('admin', 'default')
-        # print(rv.data)
         assert b'You were logged in' in rv.data
         rv = self.logout()
         assert b'You were logged out' in rv.data
