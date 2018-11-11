@@ -12,6 +12,7 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
+# slack test
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
