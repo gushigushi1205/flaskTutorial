@@ -62,7 +62,7 @@ def login():
             error = 'Invalid password'
         else:
             session['logged_in'] = True
-            flash('You were logged in')
+            flash('You were logged in slack test')
             return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
 @app.route('/logout')
