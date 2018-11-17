@@ -1,6 +1,18 @@
 version: 2
 jobs:
-  build:
+  lint:
+    docker:
+      - image: circleci/python:3.7.1
+    steps:
+      - checkout
+      # シェルスクリプトのコマンド実行
+      - run: |
+              python -m venv venv
+              source ./venv/bin/activate
+              pip install pytest
+              pip install flake8
+              flake8 ./flaskr
+  test:
     docker:
       - image: circleci/python:3.7.1
     steps:
@@ -15,3 +27,25 @@ jobs:
               # テスト結果を保存する
       - store_test_results:
           path: test-results
+docker:
+      - image: circleci/python:3.7.1
+    steps:
+      - checkout
+      # シェルスクリプトのコマンド実行
+      - run: |
+              python -m venv venv
+              source ./venv/bin/activate
+              pip install pytest
+              pip install flask
+              pytest --junit-xml=test-results/pytest.xml
+              # テスト結果を保存する
+      - store_test_results:
+          path: test-results
+workflows:
+  version: 2
+  lint-and-test:
+    jobs:
+      - lint
+      - test:
+          requires:
+            - lint
