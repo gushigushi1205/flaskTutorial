@@ -3,6 +3,7 @@ import flaskr
 import unittest
 import tempfile
 
+
 class FlaskrTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -22,10 +23,6 @@ class FlaskrTestCase(unittest.TestCase):
 
     def logout(self):
         return self.app.get('/logout', follow_redirects=True)
-
-
-
-
 
     def test_empty_db(self):
         rv = self.app.get('/')
@@ -51,6 +48,6 @@ class FlaskrTestCase(unittest.TestCase):
         assert b'&lt;Hello&gt' in rv.data
         assert b'<strong>HTML</strong> allowed here' in rv.data
 
-if __name__=='__main__':
-    unittest.main()
 
+if __name__ == '__main__':
+    unittest.main()
