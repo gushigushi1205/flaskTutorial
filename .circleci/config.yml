@@ -26,6 +26,7 @@ jobs:
       - store_test_results:
           path: test-results
   deploy:
+    working_directory: ~/flaskr
     docker:
       - image: circleci/python:3.7.1
     steps:
@@ -33,7 +34,10 @@ jobs:
       - run:
           name: Deploy Master to Heroku
           command: |
-            sqlite3 flaskr/flaskr.db < flaskr/schema.sql
+            python -m venv venv
+            source ./venv/bin/activate
+            pip install sqlite3 libsqlite3-dev libsqlite3
+            sqlite3 flaskr.db < schema.sql
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 
 workflows:
