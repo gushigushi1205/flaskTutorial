@@ -36,7 +36,7 @@ jobs:
           command: |
             python -m venv venv
             source ./venv/bin/activate
-            pip install sqlite3 libsqlite3-dev libsqlite3
+            pip install sqlite3
             sqlite3 flaskr.db < schema.sql
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 
