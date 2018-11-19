@@ -26,16 +26,13 @@ jobs:
       - store_test_results:
           path: test-results
   deploy:
-    working_directory: ~/flaskr
     docker:
-            - image: centos:7
+      - image: centos:7
     steps:
       - checkout
       - run:
           name: Deploy Master to Heroku
           command: |
-            pwd
-            ls
             yum -y install sqlite
             sqlite3 flaskr.db < schema.sql
             git add .
