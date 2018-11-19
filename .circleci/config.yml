@@ -34,6 +34,8 @@ jobs:
       - run:
           name: Deploy Master to Heroku
           command: |
+            pwd
+            ls
             yum -y install sqlite
             sqlite3 flaskr.db < schema.sql
             git add .
