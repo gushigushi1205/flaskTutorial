@@ -28,7 +28,7 @@ jobs:
   deploy:
     working_directory: ~/flaskr
     docker:
-      - image: circleci/python:3.7.1
+            - image: centos:7
     steps:
       - checkout
       - run:
